@@ -1,4 +1,3 @@
-
 build/
 src/task1_image/main
 src/task2_fit/main
@@ -8,7 +7,6 @@ src/task3_windmill/main2
 .idea/
 .DS_Store
 *.swp
-
 
 *.o
 *.out

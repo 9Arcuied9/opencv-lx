@@ -11,7 +11,7 @@ int main(){
 //task3=======================================================================================
 // 
 
-    VideoCapture cap("../../resources/task_3.mp4");
+    VideoCapture cap("resources/task_3.mp4");
     if (!cap.isOpened()) {
         std::cerr << "Error opening video stream or file" << std::endl;
         return -1;  
@@ -19,7 +19,7 @@ int main(){
     int width = cap.get(CAP_PROP_FRAME_WIDTH);
     int height = cap.get(CAP_PROP_FRAME_HEIGHT);
     double fps = cap.get(CAP_PROP_FPS);
-    VideoWriter writer("../../result/task3_windmill/task3/recognition_overlay.mp4", 
+    VideoWriter writer("result/task3_windmill/task3/recognition_overlay.mp4", 
                         VideoWriter::fourcc('m', 'p', '4', 'v'),
                         fps,
                         Size(width, height));
@@ -190,13 +190,13 @@ int main(){
 
     //展示二值化过程
     {
-        VideoCapture cap2("../../resources/task_3.mp4");
+        VideoCapture cap2("resources/task_3.mp4");
         if (!cap2.isOpened()) {
             std::cerr << "Error opening video stream or file" << std::endl;
             return -1;
         }
 
-        VideoWriter bwWriter("../../result/task3_windmill/task3/binary_process.mp4",
+        VideoWriter bwWriter("result/task3_windmill/task3/binary_process.mp4",
                              VideoWriter::fourcc('m', 'p', '4', 'v'),
                              fps,
                              Size(width, height));

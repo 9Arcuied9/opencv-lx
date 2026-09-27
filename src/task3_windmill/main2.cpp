@@ -38,7 +38,7 @@ struct Slot {
 };
 
 int main() {
-    VideoCapture cap2("../../resources/task_4.mp4");
+    VideoCapture cap2("resources/task_4.mp4");
     if (!cap2.isOpened()) { 
         cerr << "Error opening task_4.mp4" << endl; 
         return -1; 
@@ -47,7 +47,7 @@ int main() {
     int w2 = (int)cap2.get(CAP_PROP_FRAME_WIDTH);
     int h2 = (int)cap2.get(CAP_PROP_FRAME_HEIGHT);
     double fps2 = cap2.get(CAP_PROP_FPS);
-    VideoWriter writer2("../../result/task3_windmill/task4/recognition_overlay.mp4",
+    VideoWriter writer2("result/task3_windmill/task4/recognition_overlay.mp4",
                         VideoWriter::fourcc('m', 'p', '4', 'v'), fps2, Size(w2, h2));
 
     // 两个槽位
@@ -290,13 +290,13 @@ int main() {
 
     //二值化过程
     {
-        VideoCapture capB("../../resources/task_4.mp4");
+        VideoCapture capB("resources/task_4.mp4");
         if (!capB.isOpened()) {
             cerr << "Error opening task_4.mp4" << endl;
             return -1;
         }
 
-        VideoWriter bwWriter("../../result/task3_windmill/task4/binary_process.mp4",
+        VideoWriter bwWriter("result/task3_windmill/task4/binary_process.mp4",
                              VideoWriter::fourcc('m', 'p', '4', 'v'),
                              fps2,
                              Size(w2, h2));

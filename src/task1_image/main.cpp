@@ -4,7 +4,7 @@ using namespace cv;
 using namespace std;
 int main() {
     //检查读图是否成功
-    Mat img = imread("../../resources/test_image.jpg");
+    Mat img = imread("resources/test_image.jpg");
     if (img.empty()) {
     std::cerr << "Cannot read image!\n";
     return 1;
@@ -16,26 +16,26 @@ int main() {
     cvtColor(img, hsv, COLOR_BGR2HSV);
     split(hsv, channels);
 
-    imwrite("../../result/task1_images/gray.png", gray);
-    imwrite("../../result/task1_images/hsv_h.png", channels[0]);
-    imwrite("../../result/task1_images/hsv_s.png", channels[1]);
-    imwrite("../../result/task1_images/hsv_v.png", channels[2]);
+    imwrite("result/task1_images/gray.png", gray);
+    imwrite("result/task1_images/hsv_h.png", channels[0]);
+    imwrite("result/task1_images/hsv_s.png", channels[1]);
+    imwrite("result/task1_images/hsv_v.png", channels[2]);
     
     //滤波对比
     Mat meanImg, gaussianImg, medianImg;
     blur(img, meanImg, Size(5, 5));
     GaussianBlur(img, gaussianImg, Size(5, 5), 1.5);
     medianBlur(img, medianImg, 5);
-    imwrite("../../result/task1_images/mean.png", meanImg);//均值
-    imwrite("../../result/task1_images/gaussian.png", gaussianImg);//高斯
-    imwrite("../../result/task1_images/median.png", medianImg);//中值
+    imwrite("result/task1_images/mean.png", meanImg);//均值
+    imwrite("result/task1_images/gaussian.png", gaussianImg);//高斯
+    imwrite("result/task1_images/median.png", medianImg);//中值
 
     //红色提取
     Mat mask , maskLow , maskHigh;
     inRange(hsv, Scalar(0,100,80), Scalar(10,255,255), maskLow);
     inRange(hsv, Scalar(170,100,80), Scalar(179,255,255), maskHigh);
     bitwise_or(maskLow, maskHigh, mask);
-    imwrite("../../result/task1_images/red_mask.png", mask);
+    imwrite("result/task1_images/red_mask.png", mask);
     
     //形态学与轮廓
     Mat erodeImg, dilateImg, openImg, closeImg;
@@ -44,10 +44,10 @@ int main() {
     dilate(mask, dilateImg, kernel);
     morphologyEx(mask, openImg, MORPH_OPEN, kernel);
     morphologyEx(mask, closeImg, MORPH_CLOSE, kernel);
-    imwrite("../../result/task1_images/erode.png", erodeImg);
-    imwrite("../../result/task1_images/dilate.png", dilateImg);
-    imwrite("../../result/task1_images/open.png", openImg);  
-    imwrite("../../result/task1_images/close.png", closeImg);
+    imwrite("result/task1_images/erode.png", erodeImg);
+    imwrite("result/task1_images/dilate.png", dilateImg);
+    imwrite("result/task1_images/open.png", openImg);  
+    imwrite("result/task1_images/close.png", closeImg);
 
     Mat edges;
     Mat result= img.clone();
@@ -69,7 +69,7 @@ int main() {
         putText(result, text, Point(box.x, box.y - 5),
             FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0,255,255), 1);
     }
-    imwrite("../../result/task1_images/contours_boxes.png", result);
+    imwrite("result/task1_images/contours_boxes.png", result);
 
     //绘制与转换
     Mat drawing , rotatedImg , cropTopLeftImg;
@@ -80,17 +80,17 @@ int main() {
     rectangle(drawing, Point(800, 150), Point(1100, 400), Scalar(0, 255, 0), 2); //绿矩形
     putText(drawing, "Red words", Point(60, 120),FONT_HERSHEY_SIMPLEX, 1.5, Scalar(0, 0, 255), 3);//红字
                                  
-    imwrite("../../result/task1_images/draw_shapes.png", drawing);
+    imwrite("result/task1_images/draw_shapes.png", drawing);
 
     //绕图像中心旋转 35°
     Point2f center(img.cols / 2.0f, img.rows / 2.0f);
     Mat rot = getRotationMatrix2D(center, 35, 1.0);
     warpAffine(img, rotatedImg, rot, img.size());
-    imwrite("../../result/task1_images/rotate35.png", rotatedImg);
+    imwrite("result/task1_images/rotate35.png", rotatedImg);
 
     //裁剪原图左上角 1/4
     cropTopLeftImg = img(Rect(0, 0, img.cols / 2, img.rows / 2)).clone();
-    imwrite("../../result/task1_images/crop_topleft.png", cropTopLeftImg);
+    imwrite("result/task1_images/crop_topleft.png", cropTopLeftImg);
     
 
 }   

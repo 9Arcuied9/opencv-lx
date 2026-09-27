@@ -88,7 +88,7 @@ struct SineResidual {
 };
 
 int main(){
-    VideoCapture cap("../../../resources/task_2.mp4");
+    VideoCapture cap("resources/task_2.mp4");
     if (!cap.isOpened()) {
         std::cerr << "Error opening video stream or file" << std::endl;
         return -1;
@@ -96,7 +96,7 @@ int main(){
     int width = cap.get(CAP_PROP_FRAME_WIDTH);
     int height = cap.get(CAP_PROP_FRAME_HEIGHT);
     double fps = cap.get(CAP_PROP_FPS);
-    VideoWriter writer("../../../result/task2_fit/output_result.mp4", 
+    VideoWriter writer("result/task2_fit/output_result.mp4", 
                         VideoWriter::fourcc('m','p','4','v'),
                         fps,
                         Size(width, height));
@@ -266,9 +266,9 @@ int main(){
     std::cout << fixed << setprecision(6) << "RMSE = " << rmse << "\n";
 
     //保存
-    imwrite("../../../result/task2_fit/fit_comparison.png", fit_comparison);
-    imwrite("../../../result/task2_fit/angular_velocity.png", angular_velocity);
-    imwrite("../../../result/task2_fit/residuals.png", residuals);
+    imwrite("result/task2_fit/fit_comparison.png", fit_comparison);
+    imwrite("result/task2_fit/angular_velocity.png", angular_velocity);
+    imwrite("result/task2_fit/residuals.png", residuals);
 
     writer.release();
     cap.release();
